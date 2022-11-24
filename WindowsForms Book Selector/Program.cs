@@ -7,8 +7,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 /*
- * Devin Bain
- * 11/23/22
  *   Small project for my girlfriend
  *   Also my first C# project
  */
