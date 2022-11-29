@@ -14,30 +14,33 @@ namespace WindowsForms_Book_Selector
 {
     public partial class Form1 : Form
     {
-        
 
+        string selectedGenre = "";
         public Form1()
         {
-            InitializeComponent();    
+            InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //button1.FlatAppearance.BorderColor = Color.FromArgb(247, 198, 194);
-            //button2.FlatAppearance.BorderColor = Color.FromArgb(247, 198, 194);
+            
         }
 
         //BUTTON EVENTS//
+
         //ShuffleButton
         private void ShuffleButton_Click(object sender, EventArgs e)
         {
-            //Selects a random book
+            //Selects a random book from the slected genre
+            //If no genre is selected any book from the list will be chosen
             Random rand = new Random();
-            int value = rand.Next(Book.books_.Count);
+            int value = rand.Next(Book.books_.Count());
+            while (Book.books_[value].Genre != selectedGenre && selectedGenre != "" && Book.books_[value].Genre != "Other")
+                value = rand.Next(Book.books_.Count());
 
             //Prints all the book info to a central label
-            label_bookInfo.Text = (Book.books_[value].Title + "\nby\n" + Book.books_[value].Author +
-                "\n\nit's genre is " + Book.books_[value].Genre + "\nand it's " + Book.books_[value].Pages + " pages long");    
+            LabelBookInfo.Text = (Book.books_[value].Title + "\nby\n" + Book.books_[value].Author +
+                "\n\n" + Book.books_[value].Genre + "\n" + Book.books_[value].Pages + " pages long");
         }
         private void ShuffleButton_MouseEnter(object sender, EventArgs e)
         {   
@@ -53,6 +56,7 @@ namespace WindowsForms_Book_Selector
         {
             SelectedNew();
             FantasyButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "Fantasy";
         }
         private void FantasyButton_MouseEnter(object sender, EventArgs e)
         {
@@ -66,8 +70,13 @@ namespace WindowsForms_Book_Selector
         //HistoricalFicButton
         private void HistoricalFicButton_Click(object sender, EventArgs e)
         {
-            SelectedNew();
-            HistoricalFicButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            if(Book.CheckGenre(HistoricalFicButton.Text))
+            {
+                SelectedNew();
+                HistoricalFicButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+                selectedGenre = "Historical Fiction";
+            }
+            else { LabelError.Text = "A book of that genre could not be found"; }
         }
         private void HistoricalFicButton_MouseEnter(object sender, EventArgs e)
         {
@@ -83,6 +92,7 @@ namespace WindowsForms_Book_Selector
         {
             SelectedNew();
             SciFiButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "Sci-fi";
         }
         private void SciFiButton_MouseEnter(object sender, EventArgs e)
         {
@@ -98,6 +108,7 @@ namespace WindowsForms_Book_Selector
         {
             SelectedNew();
             HorrorButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "Horror";
         }
         private void HorrorButton_MouseEnter(object sender, EventArgs e)
         {
@@ -113,6 +124,7 @@ namespace WindowsForms_Book_Selector
         {
             SelectedNew();
             MysteryButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "Mystery";
         }
         private void MysteryButton_MouseEnter(object sender, EventArgs e)
         {
@@ -128,6 +140,7 @@ namespace WindowsForms_Book_Selector
         {
             SelectedNew();
             TrueCrimeButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "True Crime";
         }
         private void TrueCrimeButton_MouseEnter(object sender, EventArgs e)
         {
@@ -138,15 +151,51 @@ namespace WindowsForms_Book_Selector
 
         }
 
+        //YoungAdultButton
+        private void YoungAdultButton_Click(object sender, EventArgs e)
+        {
+            SelectedNew();
+            YoungAdultButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "Young Adult";
+        }
+        private void YoungAdultButton_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+        private void YoungAdultButton_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        //TrueStoriesButton
+        private void TrueStoriesButton_Click(object sender, EventArgs e)
+        {
+            SelectedNew();
+            TrueStoriesButton.FlatAppearance.BorderColor = Color.FromArgb(252, 238, 237);
+            selectedGenre = "True Stories";
+        }
+        private void TrueStoriesButton_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+        private void TrueStoriesButton_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Resets the border color of all genre buttons
+        /// </summary>
         private void SelectedNew()
         {
-            FantasyButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-            HistoricalFicButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-            SciFiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-            HorrorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-            MysteryButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-            TrueCrimeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
-
+            FantasyButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            HistoricalFicButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            SciFiButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            HorrorButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            MysteryButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            TrueCrimeButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            YoungAdultButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
+            TrueStoriesButton.FlatAppearance.BorderColor = Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
         }
     }
 }

@@ -4,10 +4,12 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace WindowsForms_Book_Selector
 {
-    internal class Book
+    [Serializable]
+    public class Book
     {
         private string title;
         private string author;
@@ -15,26 +17,54 @@ namespace WindowsForms_Book_Selector
         private int pages; 
         public static List<Book> books_ = new List<Book>();
 
-        public Book(string aTitle, string aAuthor, string aGenre, int aPages) 
+        public Book() 
         {
-            Console.WriteLine("Creating " + aTitle);
-            title = aTitle;
-            author = aAuthor;
-            genre = aGenre;
-            pages = aPages;
+            Console.WriteLine("Creating book");
         } 
-        
+
         public string Title
-        { get { return title; } }
+        { get { return title; } 
+          set { title = value; }  
+        }
 
         public string Author
-        { get { return author; } }
+        { get { return author; }
+          set { author = value; }
+        }
 
         public string Genre
-        { get { return genre; } }
+        { 
+            get { return genre; }
+            set 
+            { 
+                //Genre member will be set to "other" if supported genre does not exist.
+                //"Other" genre category will be included in all randomizers
+                if(value == "Fantasy" || value == "Sci-fi" || value == "Historical Fiction" || value == "Young Adult" ||
+                   value == "Horror" || value == "Mystery" || value == "True Crime" || value == "True Stories")
+                {
+                    genre = value;
+                }
+                else { genre = "Other"; }
+            }
+        }
         
         public string Pages
-        { get { return pages.ToString(); } }
+        { get { return pages.ToString(); } 
+          set { pages = Convert.ToInt32(value); }
+        }
+
+        /// <summary>
+        /// Checks books_ to see if requested genre exists
+        /// </summary>
+        /// <param name="str">genre to check</param>
+        /// <returns>TRUE if found, FALSE otherwise</returns>
+        public static bool CheckGenre(string str)
+        {
+            foreach (Book book in books_)
+                if (book.genre != str) continue;
+                else return true;
+            return false;
+        }
 
         /// <summary>
         /// Prints all books currently populated in the list.  Mostly Debug

@@ -10,7 +10,6 @@ using System.Runtime.InteropServices;
  *   Small project for my girlfriend
  *   Also my first C# project
  */
-
 namespace WindowsForms_Book_Selector
 {
     internal static class Program
@@ -23,7 +22,11 @@ namespace WindowsForms_Book_Selector
         { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            BookLoader.PackList(BookLoader.FileSearch()) ; //Auto check for book files on init
+            if(File.Exists("books.xml"))
+            {
+                BookLoader.LoadXml();
+            }
+            else { BookLoader.PackList(BookLoader.FileSearch()); }     
             Application.Run(new Form1());
         }
     }

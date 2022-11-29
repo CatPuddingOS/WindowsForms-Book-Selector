@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
@@ -9,12 +10,23 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace WindowsForms_Book_Selector
 {
     public class BookLoader
-    {  
+    {
+        static public bool CheckSave()
+        {
+            string dir = (Directory.GetCurrentDirectory() + "\\state.xml");
+
+            Console.WriteLine("Checking for xml data. . .");
+            if (File.Exists(dir))
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
         /// <summary>
         /// Searches own directory for files(.txt) containing book data
         /// </summary>
@@ -44,22 +56,22 @@ namespace WindowsForms_Book_Selector
             string[] tempArray;
             string[] lines = new string[numFiles];
             try
-            {         
+            {
                 Console.WriteLine("\nPacking Files. . . ");
-                for(int i = 0; i < numFiles; i++)
+                for (int i = 0; i < numFiles; i++)
                 {
                     //If statement preventing Concat()
                     //from leaving as many empty elements
                     //as there are files found
-                    if(i == 0)
+                    if (i == 0)
                     {
                         lines = System.IO.File.ReadAllLines(inputFiles[i]);
                     }
-                    else 
+                    else
                     {
                         tempArray = System.IO.File.ReadAllLines(inputFiles[i]);
                         lines = lines.Concat(tempArray).ToArray();
-                    }    
+                    }
                 }
                 LoadList(lines);
             }
@@ -74,26 +86,26 @@ namespace WindowsForms_Book_Selector
         /// </summary>
         /// <param name="lines">Book info array from PackList()</param>
         static public void LoadList(string[] lines)
-        {   
+        {
             Console.WriteLine("\nLoading the book list. . . ");
-            string aTitle;
-            string aAuthor;
-            string aGenre;
-            int aPages;
+
             int numBooks = lines.Length / 4;
             for (int i = 0; i < numBooks; i++)
             {
                 //Format all lines before instatiating
-                aTitle = TextFormat(lines[i * 4]);
-                aAuthor = TextFormat(lines[(i * 4) + 1]);
-                aGenre = TextFormat(lines[(i * 4) + 2]);
-                aPages = Convert.ToInt32(lines[(i * 4) + 3]);
-                Book.books_.Add(new Book(aTitle, aAuthor, aGenre, aPages));
-            }
+                Book.books_.Add(new Book());
+                Book.books_[i].Title = TextFormat(lines[i * 4]);
+                Book.books_[i].Author = TextFormat(lines[(i * 4) + 1]);
+                Book.books_[i].Genre = TextFormat(lines[(i * 4) + 2]);
+                Book.books_[i].Pages = (lines[(i * 4) + 3]);
 
-            if (Book.books_.Count == numBooks){ Console.WriteLine("All books were loaded!"); Book.PrintBooks(); }
-            else { Console.WriteLine("Something went wrong."); }
-            
+                if (Book.books_.Count == numBooks)
+                {
+                    Console.WriteLine("All books were loaded!\n");
+                    SaveXml(Book.books_);
+                }
+                else { Console.WriteLine("Something went wrong.\n"); }
+            }
         }
 
         /// <summary>
@@ -105,9 +117,9 @@ namespace WindowsForms_Book_Selector
         {
             char[] formattedLine = new char[line.Length];
 
-            for(int i = 0; i < line.Length; i++)
+            for (int i = 0; i < line.Length; i++)
             {
-                formattedLine[i] = Convert.ToChar(line.Substring(i,1).ToUpper());
+                formattedLine[i] = Convert.ToChar(line.Substring(i, 1).ToUpper());
 
                 int count = 0;
                 while (i + count < line.Length && line[i + count] != ' ')
@@ -115,14 +127,46 @@ namespace WindowsForms_Book_Selector
                     ++count;
                     if (i + count < line.Length && line[i + count] != ' ')
                         formattedLine[i + count] = Convert.ToChar(line.Substring(i + count, 1).ToLower());
-                } 
-                    
-                if(i+count < line.Length)
+                }
+
+                if (i + count < line.Length)
                     formattedLine[i + count] = ' ';
                 i += count;
             }
             line = new string(formattedLine);
             return line;
+        }
+
+
+        /// <summary>
+        /// Saves the books_ member var to an xml file
+        /// </summary>
+        /// <param name="booksList">books_ from the book class</param>
+        static void SaveXml(List<Book> booksList)
+        {
+            Console.WriteLine("Saving to file. . . ");
+
+            const string xmlFilename = "books.xml";
+            var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
+            var file = new StreamWriter(xmlFilename);
+
+            writer.Serialize(file, booksList);
+            file.Close();
+        }
+
+        /// <summary>
+        /// Loads the books_ member from books.xml
+        /// </summary>
+        public static void LoadXml()
+        {
+            Console.WriteLine("Loading from file. . . ");
+
+            const string xmlFilename = "books.xml";
+            var reader = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
+            var file = new StreamReader(xmlFilename);
+
+            Book.books_ = (List<Book>)reader.Deserialize(file);
+            file.Close();
         }
     }
 }
