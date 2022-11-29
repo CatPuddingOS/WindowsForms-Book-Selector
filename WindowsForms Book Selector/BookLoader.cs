@@ -15,18 +15,6 @@ namespace WindowsForms_Book_Selector
 {
     public class BookLoader
     {
-        static public bool CheckSave()
-        {
-            string dir = (Directory.GetCurrentDirectory() + "\\state.xml");
-
-            Console.WriteLine("Checking for xml data. . .");
-            if (File.Exists(dir))
-            {
-                return true;
-            }
-            else { return false; }
-        }
-
         /// <summary>
         /// Searches own directory for files(.txt) containing book data
         /// </summary>
@@ -102,9 +90,8 @@ namespace WindowsForms_Book_Selector
                 if (Book.books_.Count == numBooks)
                 {
                     Console.WriteLine("All books were loaded!\n");
-                    SaveXml(Book.books_);
+                    State.SaveXml(Book.books_);
                 }
-                else { Console.WriteLine("Something went wrong.\n"); }
             }
         }
 
@@ -135,38 +122,6 @@ namespace WindowsForms_Book_Selector
             }
             line = new string(formattedLine);
             return line;
-        }
-
-
-        /// <summary>
-        /// Saves the books_ member var to an xml file
-        /// </summary>
-        /// <param name="booksList">books_ from the book class</param>
-        static void SaveXml(List<Book> booksList)
-        {
-            Console.WriteLine("Saving to file. . . ");
-
-            const string xmlFilename = "books.xml";
-            var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
-            var file = new StreamWriter(xmlFilename);
-
-            writer.Serialize(file, booksList);
-            file.Close();
-        }
-
-        /// <summary>
-        /// Loads the books_ member from books.xml
-        /// </summary>
-        public static void LoadXml()
-        {
-            Console.WriteLine("Loading from file. . . ");
-
-            const string xmlFilename = "books.xml";
-            var reader = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
-            var file = new StreamReader(xmlFilename);
-
-            Book.books_ = (List<Book>)reader.Deserialize(file);
-            file.Close();
         }
     }
 }

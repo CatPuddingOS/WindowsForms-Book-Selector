@@ -24,7 +24,7 @@ namespace WindowsForms_Book_Selector
             Application.SetCompatibleTextRenderingDefault(false);
             if(File.Exists("books.xml"))
             {
-                BookLoader.LoadXml();
+                State.LoadXml();
             }
             else { BookLoader.PackList(BookLoader.FileSearch()); }     
             Application.Run(new Form1());
