@@ -22,9 +22,10 @@ namespace WindowsForms_Book_Selector
         { 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Check for existing xml file
             if(File.Exists("books.xml"))
             {
-                State.LoadXml();
+                State.LoadState();
             }
             else { BookLoader.PackList(BookLoader.FileSearch()); }     
             Application.Run(new Form1());

@@ -45,6 +45,8 @@ namespace WindowsForms_Book_Selector
             this.TrueStoriesButton = new System.Windows.Forms.Button();
             this.YoungAdultButton = new System.Windows.Forms.Button();
             this.LabelError = new System.Windows.Forms.Label();
+            this.main_panel = new System.Windows.Forms.Panel();
+            this.main_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // FantasyButton
@@ -55,9 +57,9 @@ namespace WindowsForms_Book_Selector
             this.FantasyButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.FantasyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FantasyButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FantasyButton.Location = new System.Drawing.Point(577, 129);
+            this.FantasyButton.Location = new System.Drawing.Point(249, 109);
             this.FantasyButton.Name = "FantasyButton";
-            this.FantasyButton.Size = new System.Drawing.Size(131, 47);
+            this.FantasyButton.Size = new System.Drawing.Size(200, 55);
             this.FantasyButton.TabIndex = 4;
             this.FantasyButton.Text = "Fantasy";
             this.FantasyButton.UseVisualStyleBackColor = false;
@@ -75,9 +77,9 @@ namespace WindowsForms_Book_Selector
             this.ShuffleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShuffleButton.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShuffleButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ShuffleButton.Location = new System.Drawing.Point(651, 196);
+            this.ShuffleButton.Location = new System.Drawing.Point(418, 180);
             this.ShuffleButton.Name = "ShuffleButton";
-            this.ShuffleButton.Size = new System.Drawing.Size(232, 72);
+            this.ShuffleButton.Size = new System.Drawing.Size(300, 100);
             this.ShuffleButton.TabIndex = 0;
             this.ShuffleButton.Text = "What should I read?";
             this.ShuffleButton.UseVisualStyleBackColor = false;
@@ -95,9 +97,9 @@ namespace WindowsForms_Book_Selector
             // 
             this.LabelBookInfo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LabelBookInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelBookInfo.Location = new System.Drawing.Point(514, 448);
+            this.LabelBookInfo.Location = new System.Drawing.Point(330, 502);
             this.LabelBookInfo.Name = "LabelBookInfo";
-            this.LabelBookInfo.Size = new System.Drawing.Size(506, 191);
+            this.LabelBookInfo.Size = new System.Drawing.Size(470, 191);
             this.LabelBookInfo.TabIndex = 1;
             this.LabelBookInfo.Text = "Book info";
             this.LabelBookInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -106,7 +108,7 @@ namespace WindowsForms_Book_Selector
             // 
             this.label_codeAuthor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label_codeAuthor.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_codeAuthor.Location = new System.Drawing.Point(1416, 760);
+            this.label_codeAuthor.Location = new System.Drawing.Point(1698, 898);
             this.label_codeAuthor.Name = "label_codeAuthor";
             this.label_codeAuthor.Size = new System.Drawing.Size(124, 24);
             this.label_codeAuthor.TabIndex = 2;
@@ -117,7 +119,7 @@ namespace WindowsForms_Book_Selector
             // 
             this.LabelHeader.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LabelHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelHeader.Location = new System.Drawing.Point(577, 338);
+            this.LabelHeader.Location = new System.Drawing.Point(375, 372);
             this.LabelHeader.Name = "LabelHeader";
             this.LabelHeader.Size = new System.Drawing.Size(381, 65);
             this.LabelHeader.TabIndex = 3;
@@ -132,9 +134,9 @@ namespace WindowsForms_Book_Selector
             this.HistoricalFicButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.HistoricalFicButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HistoricalFicButton.Font = new System.Drawing.Font("Segoe Script", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HistoricalFicButton.Location = new System.Drawing.Point(514, 235);
+            this.HistoricalFicButton.Location = new System.Drawing.Point(212, 235);
             this.HistoricalFicButton.Name = "HistoricalFicButton";
-            this.HistoricalFicButton.Size = new System.Drawing.Size(131, 47);
+            this.HistoricalFicButton.Size = new System.Drawing.Size(200, 55);
             this.HistoricalFicButton.TabIndex = 5;
             this.HistoricalFicButton.Text = "Historical Fiction";
             this.HistoricalFicButton.UseVisualStyleBackColor = false;
@@ -150,9 +152,9 @@ namespace WindowsForms_Book_Selector
             this.SciFiButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.SciFiButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SciFiButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SciFiButton.Location = new System.Drawing.Point(514, 182);
+            this.SciFiButton.Location = new System.Drawing.Point(212, 170);
             this.SciFiButton.Name = "SciFiButton";
-            this.SciFiButton.Size = new System.Drawing.Size(131, 47);
+            this.SciFiButton.Size = new System.Drawing.Size(200, 55);
             this.SciFiButton.TabIndex = 6;
             this.SciFiButton.Text = "Sci-Fi";
             this.SciFiButton.UseVisualStyleBackColor = false;
@@ -168,9 +170,9 @@ namespace WindowsForms_Book_Selector
             this.HorrorButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.HorrorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.HorrorButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HorrorButton.Location = new System.Drawing.Point(827, 129);
+            this.HorrorButton.Location = new System.Drawing.Point(684, 109);
             this.HorrorButton.Name = "HorrorButton";
-            this.HorrorButton.Size = new System.Drawing.Size(131, 47);
+            this.HorrorButton.Size = new System.Drawing.Size(200, 55);
             this.HorrorButton.TabIndex = 7;
             this.HorrorButton.Text = "Horror";
             this.HorrorButton.UseVisualStyleBackColor = false;
@@ -186,9 +188,9 @@ namespace WindowsForms_Book_Selector
             this.MysteryButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.MysteryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MysteryButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MysteryButton.Location = new System.Drawing.Point(889, 182);
+            this.MysteryButton.Location = new System.Drawing.Point(724, 170);
             this.MysteryButton.Name = "MysteryButton";
-            this.MysteryButton.Size = new System.Drawing.Size(131, 47);
+            this.MysteryButton.Size = new System.Drawing.Size(200, 55);
             this.MysteryButton.TabIndex = 8;
             this.MysteryButton.Text = "Mystery";
             this.MysteryButton.UseVisualStyleBackColor = false;
@@ -204,9 +206,9 @@ namespace WindowsForms_Book_Selector
             this.TrueCrimeButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.TrueCrimeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TrueCrimeButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrueCrimeButton.Location = new System.Drawing.Point(889, 235);
+            this.TrueCrimeButton.Location = new System.Drawing.Point(724, 235);
             this.TrueCrimeButton.Name = "TrueCrimeButton";
-            this.TrueCrimeButton.Size = new System.Drawing.Size(131, 47);
+            this.TrueCrimeButton.Size = new System.Drawing.Size(200, 55);
             this.TrueCrimeButton.TabIndex = 9;
             this.TrueCrimeButton.Text = "True Crime";
             this.TrueCrimeButton.UseVisualStyleBackColor = false;
@@ -222,9 +224,9 @@ namespace WindowsForms_Book_Selector
             this.TrueStoriesButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.TrueStoriesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TrueStoriesButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrueStoriesButton.Location = new System.Drawing.Point(827, 288);
+            this.TrueStoriesButton.Location = new System.Drawing.Point(684, 296);
             this.TrueStoriesButton.Name = "TrueStoriesButton";
-            this.TrueStoriesButton.Size = new System.Drawing.Size(131, 47);
+            this.TrueStoriesButton.Size = new System.Drawing.Size(200, 55);
             this.TrueStoriesButton.TabIndex = 10;
             this.TrueStoriesButton.Text = "True Stories";
             this.TrueStoriesButton.UseVisualStyleBackColor = false;
@@ -240,9 +242,9 @@ namespace WindowsForms_Book_Selector
             this.YoungAdultButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.YoungAdultButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.YoungAdultButton.Font = new System.Drawing.Font("Segoe Script", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.YoungAdultButton.Location = new System.Drawing.Point(577, 288);
+            this.YoungAdultButton.Location = new System.Drawing.Point(249, 296);
             this.YoungAdultButton.Name = "YoungAdultButton";
-            this.YoungAdultButton.Size = new System.Drawing.Size(131, 47);
+            this.YoungAdultButton.Size = new System.Drawing.Size(200, 55);
             this.YoungAdultButton.TabIndex = 11;
             this.YoungAdultButton.Text = "Young Adult";
             this.YoungAdultButton.UseVisualStyleBackColor = false;
@@ -254,12 +256,31 @@ namespace WindowsForms_Book_Selector
             // 
             this.LabelError.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LabelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelError.Location = new System.Drawing.Point(581, 71);
+            this.LabelError.Location = new System.Drawing.Point(383, 38);
             this.LabelError.Name = "LabelError";
             this.LabelError.Size = new System.Drawing.Size(377, 23);
             this.LabelError.TabIndex = 12;
             this.LabelError.Text = "Error";
             this.LabelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // main_panel
+            // 
+            this.main_panel.Controls.Add(this.LabelError);
+            this.main_panel.Controls.Add(this.LabelBookInfo);
+            this.main_panel.Controls.Add(this.ShuffleButton);
+            this.main_panel.Controls.Add(this.LabelHeader);
+            this.main_panel.Controls.Add(this.FantasyButton);
+            this.main_panel.Controls.Add(this.HistoricalFicButton);
+            this.main_panel.Controls.Add(this.YoungAdultButton);
+            this.main_panel.Controls.Add(this.SciFiButton);
+            this.main_panel.Controls.Add(this.TrueStoriesButton);
+            this.main_panel.Controls.Add(this.HorrorButton);
+            this.main_panel.Controls.Add(this.TrueCrimeButton);
+            this.main_panel.Controls.Add(this.MysteryButton);
+            this.main_panel.Location = new System.Drawing.Point(337, 58);
+            this.main_panel.Name = "main_panel";
+            this.main_panel.Size = new System.Drawing.Size(1160, 820);
+            this.main_panel.TabIndex = 13;
             // 
             // Form1
             // 
@@ -267,23 +288,13 @@ namespace WindowsForms_Book_Selector
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(198)))), ((int)(((byte)(194)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1552, 793);
-            this.Controls.Add(this.LabelError);
-            this.Controls.Add(this.YoungAdultButton);
-            this.Controls.Add(this.TrueStoriesButton);
-            this.Controls.Add(this.TrueCrimeButton);
-            this.Controls.Add(this.MysteryButton);
-            this.Controls.Add(this.HorrorButton);
-            this.Controls.Add(this.SciFiButton);
-            this.Controls.Add(this.HistoricalFicButton);
-            this.Controls.Add(this.FantasyButton);
-            this.Controls.Add(this.LabelHeader);
+            this.ClientSize = new System.Drawing.Size(1834, 931);
+            this.Controls.Add(this.main_panel);
             this.Controls.Add(this.label_codeAuthor);
-            this.Controls.Add(this.LabelBookInfo);
-            this.Controls.Add(this.ShuffleButton);
             this.Name = "Form1";
             this.Text = "The Book Jar";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.main_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -304,6 +315,7 @@ namespace WindowsForms_Book_Selector
         private System.Windows.Forms.Button TrueStoriesButton;
         private System.Windows.Forms.Button YoungAdultButton;
         private System.Windows.Forms.Label LabelError;
+        private System.Windows.Forms.Panel main_panel;
     }
 }
 

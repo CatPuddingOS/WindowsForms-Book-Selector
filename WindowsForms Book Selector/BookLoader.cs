@@ -77,20 +77,21 @@ namespace WindowsForms_Book_Selector
         {
             Console.WriteLine("\nLoading the book list. . . ");
 
-            int numBooks = lines.Length / 4;
+            int linesNeeded = 4;
+            int numBooks = lines.Length / linesNeeded;
             for (int i = 0; i < numBooks; i++)
             {
                 //Format all lines before instatiating
                 Book.books_.Add(new Book());
-                Book.books_[i].Title = TextFormat(lines[i * 4]);
-                Book.books_[i].Author = TextFormat(lines[(i * 4) + 1]);
-                Book.books_[i].Genre = TextFormat(lines[(i * 4) + 2]);
-                Book.books_[i].Pages = (lines[(i * 4) + 3]);
+                Book.books_[i].Title = TextFormat(lines[i * linesNeeded]);
+                Book.books_[i].Author = TextFormat(lines[(i * linesNeeded) + 1]);
+                Book.books_[i].Genre = TextFormat(lines[(i * linesNeeded) + 2]);
+                Book.books_[i].Pages = (lines[(i * linesNeeded) + 3]);
 
                 if (Book.books_.Count == numBooks)
                 {
                     Console.WriteLine("All books were loaded!\n");
-                    State.SaveXml(Book.books_);
+                    State.SaveState(Book.books_);
                 }
             }
         }
@@ -106,6 +107,7 @@ namespace WindowsForms_Book_Selector
 
             for (int i = 0; i < line.Length; i++)
             {
+                //Using a char array as holder for newly formatted string.
                 formattedLine[i] = Convert.ToChar(line.Substring(i, 1).ToUpper());
 
                 int count = 0;
@@ -113,11 +115,15 @@ namespace WindowsForms_Book_Selector
                 {
                     ++count;
                     if (i + count < line.Length && line[i + count] != ' ')
+                    {
                         formattedLine[i + count] = Convert.ToChar(line.Substring(i + count, 1).ToLower());
+                    }       
                 }
 
                 if (i + count < line.Length)
+                {
                     formattedLine[i + count] = ' ';
+                }     
                 i += count;
             }
             line = new string(formattedLine);

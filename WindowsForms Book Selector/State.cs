@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace WindowsForms_Book_Selector
 {
@@ -13,13 +14,13 @@ namespace WindowsForms_Book_Selector
         /// Saves the books_ member var to an xml file
         /// </summary>
         /// <param name="booksList">books_ from the book class</param>
-        public static void SaveXml(List<Book> booksList)
+        public static void SaveState(List<Book> booksList)
         {
             Console.WriteLine("Saving to file. . . ");
 
             const string xmlFilename = "books.xml";
-            var writer = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
-            var file = new StreamWriter(xmlFilename);
+            XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
+            StreamWriter file = new StreamWriter(xmlFilename);
 
             writer.Serialize(file, booksList);
             file.Close();
@@ -28,13 +29,13 @@ namespace WindowsForms_Book_Selector
         /// <summary>
         /// Loads the books_ member from books.xml
         /// </summary>
-        public static void LoadXml()
+        public static void LoadState()
         {
             Console.WriteLine("Loading from file. . . ");
 
             const string xmlFilename = "books.xml";
-            var reader = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
-            var file = new StreamReader(xmlFilename);
+            XmlSerializer reader = new System.Xml.Serialization.XmlSerializer(typeof(List<Book>));
+            StreamReader file = new StreamReader(xmlFilename);
 
             Book.books_ = (List<Book>)reader.Deserialize(file);
             file.Close();

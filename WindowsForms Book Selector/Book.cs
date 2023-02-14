@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,34 @@ using System.Xml.Serialization;
 namespace WindowsForms_Book_Selector
 {
     [Serializable]
-    public class Book
+    public class Book  //IDisposable
     {
-        private string title;
-        private string author;
+        string title;
+        string author;
         string genre;
-        private int pages; 
+        int pages; 
         public static List<Book> books_ = new List<Book>();
 
         public Book() 
         {
-            Console.WriteLine("Creating book");
-        } 
+            Console.WriteLine("## Creating book ##");
+        }
+
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
+
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        title = String.Empty; author = String.Empty; genre = String.Empty;
+        //        pages = 0;
+        //    }
+        //    // free native resources if there are any.
+        //}
 
         public string Title
         { get { return title; } 
@@ -33,19 +50,18 @@ namespace WindowsForms_Book_Selector
         }
 
         public string Genre
-        { 
-            get { return genre; }
-            set 
-            { 
-                //Genre member will be set to "other" if supported genre does not exist.
-                //"Other" genre category will be included in all randomizers
-                if(value == "Fantasy" || value == "Sci-fi" || value == "Historical Fiction" || value == "Young Adult" ||
-                   value == "Horror" || value == "Mystery" || value == "True Crime" || value == "True Stories")
-                {
-                    genre = value;
-                }
-                else { genre = "Other"; }
-            }
+        { get { return genre; }
+          set 
+          { 
+              //Genre member will be set to "other" if supported genre does not exist.
+              //"Other" genre category will be included in all randomizers
+              if(value == "Fantasy" || value == "Sci-fi" || value == "Historical Fiction" || value == "Young Adult" ||
+                 value == "Horror" || value == "Mystery" || value == "True Crime" || value == "True Stories")
+              {
+                genre = value;
+              }
+              else { genre = "Other"; }
+          }
         }
         
         public string Pages
@@ -67,7 +83,7 @@ namespace WindowsForms_Book_Selector
         }
 
         /// <summary>
-        /// Prints all books currently populated in the list.  Mostly Debug
+        /// Prints all books currently populated in the list to the console.  Mostly Debug
         /// </summary>
         public static void PrintBooks() 
         {
